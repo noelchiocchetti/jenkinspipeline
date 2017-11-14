@@ -30,20 +30,22 @@ stages{
         }
 
         stage ('Deploy to Production'){
-            timeout(time:5, unit:'DAYS'){
-                input message:'Approve Production Deployment?'
-            }
+            steps{
+                timeout(time:5, unit:'DAYS'){
+                    input message:'Approve Production Deployment?'
+                }
 
-            build job: 'Course2_Deploy_to_Prod'
-        }
-        post {
-            success {
-                echo 'Code successfully deployed to Production'
+                build job: 'Course2_Deploy_to_Prod'
             }
+            post {
+                success {
+                    echo 'Code successfully deployed to Production'
+                }
 
-            failure {
-                echo 'Deployment to Production has failed'
-            }
+                failure {
+                    echo 'Deployment to Production has failed'
+                }
+            }    
         }
     }
 }
