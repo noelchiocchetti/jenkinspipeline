@@ -29,19 +29,19 @@ stages{
             }
         }
 
-        stage('Deploy to Production') {
+        stage ('Deploy to Production'){
             timeout(time:5, unit:'DAYS'){
                 input message:'Approve Production Deployment?'
             }
 
             build job: 'Course2_Deploy_to_Prod'
         }
-        post{
+        post {
             success {
                 echo 'Code successfully deployed to Production'
             }
 
-            failure{
+            failure {
                 echo 'Deployment to Production has failed'
             }
         }
