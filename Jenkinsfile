@@ -20,6 +20,10 @@ stages{
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
+                always {
+                    echo 'Clean up the workspace'
+                    deleteDir()
+                }
             }
         }
 
